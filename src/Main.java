@@ -14,6 +14,9 @@ public class Main {
         Subscription subscription1_1 = subscription1.renew();
         System.out.println(subscription1_1);
 
+        System.out.println("갱신 전 만료일: " + subscription1.getEndDateTime());
+        System.out.println("갱신 후 만료일: " + subscription1_1.getEndDateTime());
+
         Subscription subscription2 = new Subscription("홍길동", Plan.QUARTERLY, 30000, parsedDate, 5);
         System.out.println(subscription2);
 

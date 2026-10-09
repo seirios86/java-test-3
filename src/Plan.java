@@ -1,15 +1,16 @@
 import java.time.LocalDateTime;
+import java.time.Period;
 
 public enum Plan {
-    MONTHLY(1, 0),
-    QUARTERLY(3, 5),
-    YEARLY(12, 15);
+    MONTHLY(Period.ofMonths(1), 0),
+    QUARTERLY(Period.ofMonths(3), 5),
+    YEARLY(Period.ofYears(1), 15);
 
-    private final int periodMonth;
+    private final Period period;
     private final int discountRate;
 
-    Plan(int periodMonth, int discountRate) {
-        this.periodMonth = periodMonth;
+    Plan(Period period, int discountRate) {
+        this.period = period;
         this.discountRate = discountRate;
     }
 
@@ -19,7 +20,7 @@ public enum Plan {
     }
 
     public LocalDateTime calculateEndDate(LocalDateTime startDate) {
-        return startDate.plusMonths(periodMonth);
+        return startDate.plus(period);
     }
 
 }
