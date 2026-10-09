@@ -23,21 +23,22 @@ public class Subscription {
         this.couponPercent = couponPercent;
     }
 
-    private Subscription(UUID subscriptionId, String customerName, Plan plan, long price, LocalDateTime startDateTime, Integer couponPercent) {
+    private Subscription(UUID subscriptionId, String customerName, Plan plan, long price, LocalDateTime startDateTime,
+                         LocalDateTime endDateTime, Integer couponPercent) {
         this.subscriptionId = subscriptionId;
         this.customerName = customerName;
         this.plan = plan;
         this.price = price;
         this.startDateTime = startDateTime;
-        this.endDateTime = plan.calculateEndDate(startDateTime);
+        this.endDateTime = plan.calculateEndDate(endDateTime);
         this.couponPercent = couponPercent;
     }
 
     public Subscription renew() {
-        return new Subscription(subscriptionId, customerName, plan, price, endDateTime, couponPercent);
+        return new Subscription(subscriptionId, customerName, plan, price, startDateTime, endDateTime, couponPercent);
     }
 
-    public String getEndDateTime() {
+    public String getFormattedEndDateTime() {
         return formatDate(endDateTime);
     }
 
